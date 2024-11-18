@@ -16,9 +16,9 @@ body, html {
   position: fixed;
   top: 0;
   left: 0;
-  width: 250px;
+  width: 250px; /* Width of the sidebar */
   height: 100%;
-  background-color: #00ccff; /* Your custom blue */
+  background-color: #00ccff; /* Custom blue */
   color: white;
   padding: 20px;
   display: flex;
@@ -38,7 +38,7 @@ body, html {
 
 /* Main Container */
 .main-container {
-  margin-left: 250px;
+  margin-left: 250px; /* Push the content to the right of the sidebar */
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -55,6 +55,7 @@ body, html {
   background-color: #f9f9f9;
 }
 
+/* Adjust grid width to fit available space */
 .grid-wrapper {
   display: flex;
   justify-content: center;
@@ -66,11 +67,11 @@ body, html {
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(100, 1fr);
-  grid-template-rows: repeat(100, 1fr);
+  grid-template-columns: repeat(20, 1fr); /* 20 equal-width columns */
+  grid-template-rows: repeat(20, 1fr); /* 20 equal-height rows */
   gap: 0;
-  width: 400px; /* Define fixed width */
-  height: 400px; /* Define fixed height */
+  width: calc(100vw - 250px); /* Adjust width to page width minus sidebar */
+  height: 100vh; /* Full height of the page */
 }
 
 .grid-cell {
