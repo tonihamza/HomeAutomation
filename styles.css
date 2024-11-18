@@ -71,7 +71,7 @@ body, html {
   grid-template-rows: repeat(20, 1fr); /* 20 equal-height rows */
   gap: 0;
   width: calc(100vw - 250px); /* Adjust width to page width minus sidebar */
-  height: 100vh; /* Full height of the page */
+  height: calc(100vw - 250px);
 }
 
 .grid-cell {
