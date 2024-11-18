@@ -66,8 +66,8 @@ body, html {
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(20, 1fr);
-  grid-template-rows: repeat(20, 1fr);
+  grid-template-columns: repeat(100, 1fr);
+  grid-template-rows: repeat(100, 1fr);
   gap: 0;
   width: 400px; /* Define fixed width */
   height: 400px; /* Define fixed height */
