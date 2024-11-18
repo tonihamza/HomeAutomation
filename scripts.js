@@ -1,18 +1,69 @@
-// Select all menu links
-const menuLinks = document.querySelectorAll('.menu-link');
-const mainContainer = document.querySelector('.main-container');
+const grid = document.getElementById('grid');
+const buttons = document.querySelectorAll('.button');
 
-// Handle navigation clicks
-menuLinks.forEach(link => {
-  link.addEventListener('click', event => {
-    event.preventDefault();
-    const target = link.getAttribute('data-target'); // Get target section
-    const targetSection = document.getElementById(target);
+// Create 20x20 grid
+for (let i = 0; i < 400; i++) {
+  const cell = document.createElement('div');
+  cell.classList.add('grid-cell');
+  cell.setAttribute('data-id', i);
+  cell.setAttribute('draggable', 'false'); // Prevent grid cells from being dragged
+  grid.appendChild(cell);
+}
 
-    // Calculate the position of the target section
-    const targetPosition = targetSection.offsetTop;
+// Add drag-and-drop functionality for buttons
+let draggedButton = null;
 
-    // Smooth scroll effect by setting transform on the container
-    mainContainer.style.transform = `translateY(-${targetPosition}px)`;
+buttons.forEach(button => {
+  button.addEventListener('dragstart', e => {
+    draggedButton = e.target;
   });
+
+  button.addEventListener('dragend', () => {
+    draggedButton = null;
+  });
+});
+
+grid.addEventListener('dragover', e => {
+  e.preventDefault();
+  const cell = e.target;
+  if (cell.classList.contains('grid-cell')) {
+    cell.classList.add('hover');
+  }
+});
+
+grid.addEventListener('dragleave', e => {
+  const cell = e.target;
+  if (cell.classList.contains('grid-cell')) {
+    cell.classList.remove('hover');
+  }
+});
+
+grid.addEventListener('drop', e => {
+  e.preventDefault();
+  const cell = e.target;
+
+  if (cell.classList.contains('grid-cell') && draggedButton) {
+    cell.classList.remove('hover');
+
+    if (!cell.hasChildNodes()) {
+      const newButton = draggedButton.cloneNode(true);
+      newButton.setAttribute('draggable', 'true');
+      cell.appendChild(newButton);
+
+      // Enable moving existing buttons
+      newButton.addEventListener('dragstart', e => {
+        draggedButton = e.target;
+      });
+
+      newButton.addEventListener('dragend', () => {
+        draggedButton = null;
+      });
+    } else {
+      // Move the existing button to the new cell
+      const currentButton = cell.querySelector('button');
+      if (currentButton) {
+        currentButton.parentElement.appendChild(draggedButton);
+      }
+    }
+  }
 });
