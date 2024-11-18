@@ -3,11 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Single Page Navigation</title>
+  <title>Interactive Grid</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- Sidebar -->
   <nav class="sidebar">
     <h3 class="sidebar-header">Menu</h3>
     <div class="menu">
@@ -16,33 +15,33 @@
     </div>
   </nav>
 
-  <!-- Main Content -->
   <div class="main-container">
-    <!-- Grid Section -->
     <section id="grid-section" class="page-section">
       <header class="header">
-        <h1>Drag & Drop</h1>
-        <h2>Interactive Grid</h2>
+        <h1>Interactive Grid</h1>
+        <h2>Drag & Drop System</h2>
         <hr class="divider">
       </header>
-      <div class="grid-container">
-        <div class="grid-item" draggable="true">Item 1</div>
-        <div class="grid-item" draggable="true">Item 2</div>
-        <div class="grid-item" draggable="true">Item 3</div>
-        <div class="grid-item" draggable="true">Item 4</div>
-        <div class="grid-item" draggable="true">Item 5</div>
-        <div class="grid-item" draggable="true">Item 6</div>
+      
+      <div class="grid-wrapper">
+        <div id="grid" class="grid"></div>
+      </div>
+      <div class="button-container">
+        <button class="button button1" draggable="true" data-id="1">Button 1</button>
+        <button class="button button1" draggable="true" data-id="2">Button 2</button>
+        <button class="button button1" draggable="true" data-id="3">Button 3</button>
+        <button class="button button1" draggable="true" data-id="4">Button 4</button>
+        <button class="button button1" draggable="true" data-id="5">Button 5</button>
       </div>
     </section>
 
-    <!-- Automations Section -->
     <section id="automations-section" class="page-section">
       <header class="header">
         <h1>Automations</h1>
         <h2>Task Automation</h2>
         <hr class="divider">
       </header>
-      <p>Here you can define and manage automations for your tasks!</p>
+      <p>Define and manage automations for your tasks here!</p>
     </section>
   </div>
 
