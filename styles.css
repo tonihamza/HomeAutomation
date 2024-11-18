@@ -7,7 +7,7 @@
 
 body, html {
   font-family: Arial, sans-serif;
-  overflow: hidden; /* Prevent scrolling */
+  overflow: hidden;
   height: 100%;
 }
 
@@ -16,26 +16,14 @@ body, html {
   position: fixed;
   top: 0;
   left: 0;
-  width: 250px; /* Width of the sidebar */
-  height: 100%; /* Full height */
-  background-color: #00ccff; /* Bright blue background */
+  width: 250px;
+  height: 100%;
+  background-color: #00ccff; /* Your custom blue */
   color: white;
   padding: 20px;
   display: flex;
   flex-direction: column;
-  justify-content: start;
-  z-index: 10; /* Ensure it stays on top of other elements */
-}
-
-.sidebar-header {
-  font-size: 1.5rem;
-  margin-bottom: 20px;
-}
-
-.menu {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  z-index: 10;
 }
 
 .menu-link {
@@ -44,24 +32,21 @@ body, html {
   padding: 10px;
   border-radius: 5px;
   background: rgba(255, 255, 255, 0.2);
+  margin-bottom: 10px;
   text-align: center;
 }
 
-.menu-link:hover {
-  background: rgba(255, 255, 255, 0.4);
-}
-
-/* Main Content */
+/* Main Container */
 .main-container {
-  margin-left: 500px; /* Leave space for the sidebar */
-  height: 100%; /* Full height */
+  margin-left: 250px;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  transition: transform 0.5s ease-in-out; /* Smooth transitions */
+  transition: transform 0.5s ease-in-out;
 }
 
 .page-section {
-  height: 100vh; /* Full height for each section */
+  height: 100vh;
   padding: 20px;
   box-sizing: border-box;
 }
@@ -70,46 +55,63 @@ body, html {
   background-color: #f9f9f9;
 }
 
-#automations-section {
-  background-color: #ffffff;
-}
-
-/* Header Styles */
-.header h1 {
-  font-size: 2.5rem;
-  color: #00ccff;
-}
-
-.header h2 {
-  font-size: 1.8rem;
-  color: #333;
-}
-
-hr.divider {
-  width: 50px;
-  height: 5px;
-  background-color: #00ccff;
-  border: none;
-  margin: 20px 0;
-}
-
-/* Grid Section */
-.grid-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 20px;
+.grid-wrapper {
+  display: flex;
+  justify-content: center;
   margin-top: 20px;
+  border: 2px solid #000; /* Border around the grid */
+  padding: 10px;
+  background: #fff;
 }
 
-.grid-item {
-  background-color: #00ccff;
+.grid {
+  display: grid;
+  grid-template-columns: repeat(20, 1fr);
+  grid-template-rows: repeat(20, 1fr);
+  gap: 0;
+  width: 400px; /* Define fixed width */
+  height: 400px; /* Define fixed height */
+}
+
+.grid-cell {
+  width: 100%;
+  height: 100%;
+  border: 1px solid #ccc; /* Optional border for grid cells */
+  background: #fff; /* White background */
+}
+
+.grid-cell.hover {
+  background: #e0e0e0; /* Light gray for hover effect */
+}
+
+/* Buttons */
+.button {
+  background-color: #00ccff; /* Custom blue */
+  border: none;
   color: white;
-  padding: 20px;
+  padding: 16px 32px;
   text-align: center;
-  border-radius: 5px;
-  cursor: grab;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
 }
 
-.grid-item:active {
+.button1 {
+  background-color: white;
+  color: black;
+  border: 2px solid #00ccff; /* Custom blue border */
+}
+
+/* Style for buttons being dragged */
+.button:active {
   cursor: grabbing;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
 }
