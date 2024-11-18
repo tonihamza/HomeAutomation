@@ -1,7 +1,7 @@
 const grid = document.getElementById('grid');
 const buttons = document.querySelectorAll('.button');
 
-// Create 20x20 grid
+// Create 20x20 grid, initially empty
 for (let i = 0; i < 400; i++) {
   const cell = document.createElement('div');
   cell.classList.add('grid-cell');
@@ -45,12 +45,13 @@ grid.addEventListener('drop', e => {
   if (cell.classList.contains('grid-cell') && draggedButton) {
     cell.classList.remove('hover');
 
+    // If the cell is empty, create a new button
     if (!cell.hasChildNodes()) {
       const newButton = draggedButton.cloneNode(true);
       newButton.setAttribute('draggable', 'true');
       cell.appendChild(newButton);
 
-      // Enable moving existing buttons
+      // Enable moving the newly created button
       newButton.addEventListener('dragstart', e => {
         draggedButton = e.target;
       });
