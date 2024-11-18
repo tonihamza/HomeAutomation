@@ -6,7 +6,6 @@ for (let i = 0; i < 400; i++) {
   const cell = document.createElement('div');
   cell.classList.add('grid-cell');
   cell.setAttribute('data-id', i);
-  cell.setAttribute('draggable', 'false'); // Prevent grid cells from being dragged
   grid.appendChild(cell);
 }
 
@@ -45,10 +44,19 @@ grid.addEventListener('drop', e => {
   if (cell.classList.contains('grid-cell') && draggedButton) {
     cell.classList.remove('hover');
 
-    // If the cell is empty, create a new button
+    // Find the starting position of the drop
+    const cellIndex = Array.from(grid.children).indexOf(cell);
+
+    // Determine how many columns and rows the button will span based on the size of the button
+    const buttonWidthInCells = Math.ceil(draggedButton.offsetWidth / cell.offsetWidth);
+    const buttonHeightInCells = Math.ceil(draggedButton.offsetHeight / cell.offsetHeight);
+
+    // If the cell is empty, place the button and span over multiple cells
     if (!cell.hasChildNodes()) {
       const newButton = draggedButton.cloneNode(true);
       newButton.setAttribute('draggable', 'true');
+      newButton.style.gridColumn = `${cellIndex % 20 + 1} / span ${buttonWidthInCells}`;
+      newButton.style.gridRow = `${Math.floor(cellIndex / 20) + 1} / span ${buttonHeightInCells}`;
       cell.appendChild(newButton);
 
       // Enable moving the newly created button
@@ -59,12 +67,6 @@ grid.addEventListener('drop', e => {
       newButton.addEventListener('dragend', () => {
         draggedButton = null;
       });
-    } else {
-      // Move the existing button to the new cell
-      const currentButton = cell.querySelector('button');
-      if (currentButton) {
-        currentButton.parentElement.appendChild(draggedButton);
-      }
     }
   }
 });
